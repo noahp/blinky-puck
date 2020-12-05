@@ -3,20 +3,19 @@ FROM ubuntu:focal
 ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && apt-get -y install \
+    binutils-arm-none-eabi \
     build-essential \
-    clang \
-    clang-format \
+    gcc-arm-none-eabi \
+    gcc-arm-none-eabi-source \
     git \
+    libnewlib-arm-none-eabi \
+    libnewlib-nano-arm-none-eabi \
     lld \
-    llvm \
-    pv \
-    wget
+    llvm
 
-ARG ARM_URL=https://developer.arm.com/-/media/Files/downloads/gnu-rm/9-2020q2/gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux.tar.bz2?revision=05382cca-1721-44e1-ae19-1e7c3dc96118&la=en&hash=D7C9D18FCA2DD9F894FD9F3C3DC9228498FA281A
-RUN wget -nv --show-progress --progress=bar:force:noscroll ${ARM_URL} -O /opt/gcc-arm-none-eabi.tar.bz2 && \
-    mkdir -p /opt/gcc-arm-none-eabi && \
-    pv --force /opt/gcc-arm-none-eabi.tar.bz2 | tar xj --directory /opt/gcc-arm-none-eabi --strip-components 1
-ENV PATH=/opt/gcc-arm-none-eabi/bin:${PATH}
+# Unused for now
+# clang \
+# clang-format \
 
 # get user id from build arg, so we can have read/write access to directories
 # mounted inside the container. only the UID is necessary, UNAME just for
