@@ -21,3 +21,39 @@ Notes:
 - check coin cell capacity...looks like LIR2032's are about 40mAh
 - might need some capacitance on Vbat to not brown out the cell... might be
   taking ~1C off it if the ws2812b goes full on
+
+## software
+
+`LED_STATE`:
+
+- white flashing
+- red flashing
+- white solid
+- off (system shut down)
+
+Use SPI DMA, GPIO interrupt, and 2 timers.
+
+### system startup
+
+1. initial button press shorts p-fet to enable power momentarily to micro +
+   ws2812 VSS, micro boots and holds p-fet on until `LED_STATE` goes to off.
+
+### button control
+
+1. button press triggers GPIO interrupt (interrupt triggers on high + low)
+2. GPIO ISR, sample GPIO level, if button=pressed, start timer
+   peripheral for debounce, otherwise clear and disable timer IRQ
+3. if debounce timer IRQ trips, advance `LED_STATE`. next timer ISR will select
+   the correct mode (TODO or update immediately? need to stop interrupts and
+   wait for SPI to finish and then update everything)
+
+### ws2812b control
+
+1. on system init set up SPI for DMA
+2. patterns should be defined in an arrary of structs defining ON/OFF periods
+   and rgb values to write
+3. write ON rgb value and set timer for timeout on the ON period
+4. when timer ISR fires, write OFF rgb value and set timer for timeout on the
+   OFF period
+5. when timer ISR fires, write ON rgb value and set timer for timeout on the ON
+   period. repeat from 3.

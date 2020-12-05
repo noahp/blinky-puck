@@ -27,7 +27,20 @@ else
 CFLAGS += -Os
 endif
 
-CFLAGS += -Wall -Werror
+CFLAGS += -Wall -Werror -Wextra
+CFLAGS += \
+    -Werror=conversion \
+    -Werror=sign-conversion \
+    -Werror=undef \
+    -Werror=shadow \
+    -Werror=double-promotion \
+    -Werror=jump-misses-init \
+    -Werror=logical-op \
+    -Werror=format=2 \
+    -Werror=duplicated-cond \
+    -Werror=duplicated-branches \
+    -Werror=implicit-fallthrough \
+    -Werror=null-dereference \
 
 CFLAGS += -mlittle-endian -mthumb -mthumb-interwork
 
@@ -64,6 +77,8 @@ OBJS := $(addprefix $(BUILDDIR)/,$(OBJS))
 
 all: $(TARGET)
 
+.SILENT:
+
 $(BUILDDIR):
 	mkdir -p $@
 
@@ -81,9 +96,11 @@ DEPFLAGS = -MMD -MP -MF $@.d
 
 $(BUILDDIR)/%.o: %.c | $(BUILDDIR)
 	mkdir -p $(dir $@)
+	echo "CC $(notdir $<)"
 	$(CC) $(CFLAGS) $(DEPFLAGS) -c $< -o $@
 
 $(TARGET): $(OBJS) $(LDSCRIPT)
+	echo "Linking $(notdir $@)"
 	$(CC) $(CFLAGS) $(LDFLAGS) $(OBJS) -o $@
 	$(SIZE) $(TARGET)
 
