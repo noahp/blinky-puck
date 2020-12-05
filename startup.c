@@ -1,6 +1,8 @@
 
 #include <stdint.h>
 
+#include "lib/samd10d13am.h"
+
 extern int main(void);
 
 // Following symbols are defined by the linker.

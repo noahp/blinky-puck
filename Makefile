@@ -18,7 +18,13 @@ CFLAGS += $(ARCHFLAGS)
 
 CFLAGS += -ffunction-sections -fdata-sections
 
-CFLAGS += -g3 -Os
+CFLAGS += -ggdb3
+
+ifeq (1,$(DEBUG))
+CFLAGS += -Og
+else
+CFLAGS += -Os
+endif
 
 CFLAGS += -Wall -Werror
 
@@ -44,10 +50,13 @@ SRCS = \
     main.c \
     startup.c \
 
+INCS = \
+    lib
+
+CFLAGS += $(addprefix -I,$(INCS))
+
 OBJS = $(patsubst %.c, %.o, $(SRCS))
 OBJS := $(addprefix $(BUILDDIR)/,$(OBJS))
-
-# VPATH = ./
 
 all: $(TARGET)
 
@@ -57,8 +66,17 @@ $(BUILDDIR):
 clean:
 	$(RM) $(BUILDDIR)
 
+# these are the compiler flags for emitting the dependency tracking
+# file. Note the usage of the '$<' automatic variable
+DEPFLAGS = -MMD -MP -MF $@.d
+
+# bring in the prerequisites by including all the .d files. prefix
+# the line with '-' to prevent an error if any of the files do not
+# exist
+-include $(wildcard $(BUILDDIR)/*.d)
+
 $(BUILDDIR)/%.o: %.c | $(BUILDDIR)
-	$(CC) $(CFLAGS) -c $^ -o $@
+	$(CC) $(CFLAGS) $(DEPFLAGS) -c $^ -o $@
 
 $(TARGET): $(OBJS)
 	$(CC) $(CFLAGS) $(LDFLAGS) $^ -o $@
