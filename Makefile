@@ -5,12 +5,13 @@ TARGET = $(BUILDDIR)/main.elf
 
 BOARD ?= samd10
 
-ENABLE_SEMIHOSTING ?= 1
+# too big, need the poor man's version...
+ENABLE_SEMIHOSTING ?= 0
 
 ifeq (samd10,$(BOARD))
 # TODO confirm this layout is right
 LDSCRIPT ?= devices/samd10d13am_flash.ld
-ARCHFLAGS ?= -mcpu=cortex-m0plus
+ARCHFLAGS ?= -mcpu=cortex-m0plus -D__SAMD10D13AM__
 OPENOCD_CFG ?=
 endif
 
@@ -48,10 +49,13 @@ RM = rm -rf
 
 SRCS = \
     main.c \
-    startup.c \
+    lib/samd10/source/gcc/startup_samd10.c \
 
 INCS = \
-    lib
+    . \
+    lib/cmsis \
+    lib/samd10/include \
+    lib/samd10/source \
 
 CFLAGS += $(addprefix -I,$(INCS))
 
@@ -76,10 +80,11 @@ DEPFLAGS = -MMD -MP -MF $@.d
 -include $(wildcard $(BUILDDIR)/*.d)
 
 $(BUILDDIR)/%.o: %.c | $(BUILDDIR)
-	$(CC) $(CFLAGS) $(DEPFLAGS) -c $^ -o $@
+	mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) $(DEPFLAGS) -c $< -o $@
 
-$(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) $(LDFLAGS) $^ -o $@
+$(TARGET): $(OBJS) $(LDSCRIPT)
+	$(CC) $(CFLAGS) $(LDFLAGS) $(OBJS) -o $@
 	$(SIZE) $(TARGET)
 
 openocd: build
