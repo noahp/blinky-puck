@@ -6,9 +6,7 @@ RUN apt-get update && apt-get -y install \
     binutils-arm-none-eabi \
     build-essential \
     gcc-arm-none-eabi \
-    gcc-arm-none-eabi-source \
     git \
-    libnewlib-arm-none-eabi \
     libnewlib-nano-arm-none-eabi \
     lld \
     llvm

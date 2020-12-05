@@ -119,9 +119,9 @@ void EIC_Handler(void) {
   // sample GPIO
   if (!read_button_gpio()) {
     // TODO set up TC1 for button debounce
-  } else {
+  } /*else {
     // TODO clear and reset TC1, we failed to debounce 😔
-  }
+  }*/
 }
 
 void TC1_Handler(void) {
