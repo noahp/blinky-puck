@@ -1,0 +1,455 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L Battery_Management:MCP73831-2-OT U3
+U 1 1 5FCC3CB4
+P 9350 2550
+F 0 "U3" H 9500 2950 50  0000 C CNN
+F 1 "MCP73831-2-OT" H 9750 2850 50  0000 C CNN
+F 2 "Package_TO_SOT_SMD:SOT-23-5" H 9400 2300 50  0001 L CIN
+F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/20001984g.pdf" H 9200 2500 50  0001 C CNN
+	1    9350 2550
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:USB_C_Receptacle J1
+U 1 1 5FCC4378
+P 1800 2650
+F 0 "J1" H 1907 4217 50  0000 C CNN
+F 1 "USB_C_Receptacle" H 1907 4126 50  0000 C CNN
+F 2 "" H 1950 2650 50  0001 C CNN
+F 3 "http://www.usb.org/developers/docs/usb_31_033017.zip" H 1950 2650 50  0001 C CNN
+	1    1800 2650
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R2
+U 1 1 5FCC570F
+P 3350 2050
+F 0 "R2" H 3420 2096 50  0000 L CNN
+F 1 "5.1k" H 3420 2005 50  0000 L CNN
+F 2 "" V 3280 2050 50  0001 C CNN
+F 3 "~" H 3350 2050 50  0001 C CNN
+	1    3350 2050
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R1
+U 1 1 5FCC5F82
+P 2900 2100
+F 0 "R1" H 2970 2146 50  0000 L CNN
+F 1 "5.1k" H 2970 2055 50  0000 L CNN
+F 2 "" V 2830 2100 50  0001 C CNN
+F 3 "~" H 2900 2100 50  0001 C CNN
+	1    2900 2100
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR02
+U 1 1 5FCC6532
+P 3050 2350
+F 0 "#PWR02" H 3050 2100 50  0001 C CNN
+F 1 "GND" H 3055 2177 50  0000 C CNN
+F 2 "" H 3050 2350 50  0001 C CNN
+F 3 "" H 3050 2350 50  0001 C CNN
+	1    3050 2350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2400 1950 2900 1950
+Wire Wire Line
+	2900 2250 2900 2300
+Wire Wire Line
+	2900 2300 3050 2300
+Wire Wire Line
+	3050 2300 3050 2350
+Connection ~ 3050 2300
+$Comp
+L power:GND #PWR01
+U 1 1 5FCC7338
+P 1750 4550
+F 0 "#PWR01" H 1750 4300 50  0001 C CNN
+F 1 "GND" H 1755 4377 50  0000 C CNN
+F 2 "" H 1750 4550 50  0001 C CNN
+F 3 "" H 1750 4550 50  0001 C CNN
+	1    1750 4550
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1600 4250 1600 4450
+Wire Wire Line
+	1600 4450 1750 4450
+Wire Wire Line
+	1750 4450 1750 4550
+Wire Wire Line
+	1700 4250 1700 4350
+Wire Wire Line
+	1700 4350 1750 4350
+Wire Wire Line
+	1750 4350 1750 4450
+Connection ~ 1750 4450
+Wire Wire Line
+	1800 4350 1750 4350
+Connection ~ 1750 4350
+Wire Wire Line
+	1800 4250 1800 4350
+Wire Wire Line
+	1900 4250 1900 4450
+Wire Wire Line
+	1900 4450 1750 4450
+Wire Wire Line
+	1500 4250 1500 4450
+Wire Wire Line
+	1500 4450 1600 4450
+Connection ~ 1600 4450
+Wire Wire Line
+	2400 1850 3350 1850
+Wire Wire Line
+	3350 1850 3350 1900
+Wire Wire Line
+	3350 2200 3350 2300
+Wire Wire Line
+	3050 2300 3350 2300
+Wire Wire Line
+	2400 1650 2500 1650
+Wire Wire Line
+	2500 1650 2500 1550
+Wire Wire Line
+	2500 1350 2400 1350
+Wire Wire Line
+	2400 1450 2500 1450
+Connection ~ 2500 1450
+Wire Wire Line
+	2500 1450 2500 1350
+Wire Wire Line
+	2400 1550 2500 1550
+Connection ~ 2500 1550
+Wire Wire Line
+	2500 1550 2500 1450
+Text Label 2500 1350 0    50   ~ 0
+VBUS
+$Comp
+L Regulator_Linear:MIC5504-3.3YM5 U2
+U 1 1 5FCCEA30
+P 5600 1550
+F 0 "U2" H 5600 1917 50  0000 C CNN
+F 1 "MIC5504-3.3YM5" H 5600 1826 50  0000 C CNN
+F 2 "Package_TO_SOT_SMD:SOT-23-5" H 5600 1150 50  0001 C CNN
+F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/MIC550X.pdf" H 5350 1800 50  0001 C CNN
+	1    5600 1550
+	1    0    0    -1  
+$EndComp
+$Comp
+L LED:WS2812B D1
+U 1 1 5FCD04E1
+P 7150 2650
+F 0 "D1" H 7300 2400 50  0000 L CNN
+F 1 "WS2812B" H 7300 2300 50  0000 L CNN
+F 2 "LED_SMD:LED_WS2812B_PLCC4_5.0x5.0mm_P3.2mm" H 7200 2350 50  0001 L TNN
+F 3 "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf" H 7250 2275 50  0001 L TNN
+	1    7150 2650
+	1    0    0    -1  
+$EndComp
+$Comp
+L MCU_Microchip_SAMD:SAMD10D13A-M U1
+U 1 1 5FCD0F0E
+P 3950 5100
+F 0 "U1" H 3950 6550 50  0000 C CNN
+F 1 "SAMD10D13A-M" H 3950 6450 50  0000 C CNN
+F 2 "Package_DFN_QFN:QFN-24-1EP_4x4mm_P0.5mm_EP2.6x2.6mm" H 3950 3750 50  0001 C CNN
+F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-42242-SAM-D10_Datasheet.pdf" H 3950 4100 50  0001 C CNN
+	1    3950 5100
+	1    0    0    -1  
+$EndComp
+$Comp
+L Switch:SW_Push SW1
+U 1 1 5FCD67E0
+P 5850 5200
+F 0 "SW1" H 5850 5485 50  0000 C CNN
+F 1 "SW_Push" H 5850 5394 50  0000 C CNN
+F 2 "" H 5850 5400 50  0001 C CNN
+F 3 "" H 5850 5400 50  0001 C CNN
+	1    5850 5200
+	1    0    0    -1  
+$EndComp
+Text Notes 5650 5350 0    50   ~ 0
+* e.g.: PTS645SK50SMTR92
+$Comp
+L Device:Battery_Cell BT1
+U 1 1 5FCE699D
+P 9650 3550
+F 0 "BT1" H 9768 3646 50  0000 L CNN
+F 1 "Battery_Cell" H 9768 3555 50  0000 L CNN
+F 2 "" V 9650 3610 50  0001 C CNN
+F 3 "~" V 9650 3610 50  0001 C CNN
+	1    9650 3550
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9750 2450 10000 2450
+Text Label 10000 2450 0    50   ~ 0
+VBAT
+Text Label 9650 3350 0    50   ~ 0
+VBAT
+$Comp
+L power:GND #PWR07
+U 1 1 5FCEB93A
+P 9650 3800
+F 0 "#PWR07" H 9650 3550 50  0001 C CNN
+F 1 "GND" H 9655 3627 50  0000 C CNN
+F 2 "" H 9650 3800 50  0001 C CNN
+F 3 "" H 9650 3800 50  0001 C CNN
+	1    9650 3800
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9650 3800 9650 3750
+Wire Notes Line
+	8250 1750 8250 4200
+Wire Notes Line
+	10800 4200 10800 1750
+Text Notes 9250 4450 0    50   ~ 0
+BATTERY CHARGING
+Wire Wire Line
+	9350 3750 9650 3750
+Connection ~ 9650 3750
+Wire Wire Line
+	9650 3750 9650 3650
+Wire Wire Line
+	9350 2850 9350 3750
+Wire Wire Line
+	8950 2650 8700 2650
+Wire Wire Line
+	8700 2650 8700 2950
+Wire Wire Line
+	8700 3250 8700 3750
+Wire Wire Line
+	8700 3750 9350 3750
+Connection ~ 9350 3750
+$Comp
+L Device:R R3
+U 1 1 5FCFAC22
+P 8700 3100
+F 0 "R3" H 8770 3146 50  0000 L CNN
+F 1 "R" H 8770 3055 50  0000 L CNN
+F 2 "" V 8630 3100 50  0001 C CNN
+F 3 "~" H 8700 3100 50  0001 C CNN
+	1    8700 3100
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:LED D2
+U 1 1 5FD03D64
+P 10400 2450
+F 0 "D2" H 10400 2200 50  0000 C CNN
+F 1 "LED" H 10400 2300 50  0000 C CNN
+F 2 "" H 10400 2450 50  0001 C CNN
+F 3 "~" H 10400 2450 50  0001 C CNN
+	1    10400 2450
+	0    -1   -1   0   
+$EndComp
+Text Label 9300 1950 2    50   ~ 0
+VBUS
+$Comp
+L Device:R 470R1
+U 1 1 5FD09607
+P 10050 2650
+F 0 "470R1" V 9850 2650 50  0000 C CNN
+F 1 "R" V 9950 2650 50  0000 C CNN
+F 2 "" V 9980 2650 50  0001 C CNN
+F 3 "~" H 10050 2650 50  0001 C CNN
+	1    10050 2650
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	9900 2650 9750 2650
+Wire Wire Line
+	10200 2650 10400 2650
+Wire Wire Line
+	10400 2650 10400 2600
+Wire Wire Line
+	9350 1950 10400 1950
+Connection ~ 9350 1950
+Wire Wire Line
+	9350 1950 9350 2250
+$Comp
+L Device:C C3
+U 1 1 5FD0F530
+P 8550 2200
+F 0 "C3" H 8665 2246 50  0000 L CNN
+F 1 "4.7uF" H 8665 2155 50  0000 L CNN
+F 2 "" H 8588 2050 50  0001 C CNN
+F 3 "~" H 8550 2200 50  0001 C CNN
+	1    8550 2200
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR06
+U 1 1 5FD0FCFA
+P 8550 2450
+F 0 "#PWR06" H 8550 2200 50  0001 C CNN
+F 1 "GND" H 8555 2277 50  0000 C CNN
+F 2 "" H 8550 2450 50  0001 C CNN
+F 3 "" H 8550 2450 50  0001 C CNN
+	1    8550 2450
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8550 2450 8550 2350
+Wire Wire Line
+	8550 2050 8550 1950
+Wire Wire Line
+	8550 1950 9350 1950
+Wire Wire Line
+	10400 1950 10400 2300
+Wire Notes Line
+	8250 1750 10800 1750
+Wire Notes Line
+	8250 4200 10800 4200
+Text Notes 5900 1100 0    50   ~ 0
+* note: power gating the output\nof this LDO instead of vbat, to protect\nthe MCU from overvoltage. wastes a \nlittle quiescent :(
+Wire Wire Line
+	6000 1450 6250 1450
+Text Label 6700 1450 0    50   ~ 0
+VDD_3v3
+$Comp
+L power:GND #PWR04
+U 1 1 5FD193F5
+P 5600 2000
+F 0 "#PWR04" H 5600 1750 50  0001 C CNN
+F 1 "GND" H 5605 1827 50  0000 C CNN
+F 2 "" H 5600 2000 50  0001 C CNN
+F 3 "" H 5600 2000 50  0001 C CNN
+	1    5600 2000
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5600 2000 5600 1950
+$Comp
+L Device:C C2
+U 1 1 5FD1BBCB
+P 6250 1750
+F 0 "C2" H 6365 1796 50  0000 L CNN
+F 1 "1uF" H 6365 1705 50  0000 L CNN
+F 2 "" H 6288 1600 50  0001 C CNN
+F 3 "~" H 6250 1750 50  0001 C CNN
+	1    6250 1750
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C1
+U 1 1 5FD1C298
+P 4250 1650
+F 0 "C1" H 4365 1696 50  0000 L CNN
+F 1 "1uF" H 4365 1605 50  0000 L CNN
+F 2 "" H 4288 1500 50  0001 C CNN
+F 3 "~" H 4250 1650 50  0001 C CNN
+	1    4250 1650
+	1    0    0    -1  
+$EndComp
+Connection ~ 5600 1950
+Wire Wire Line
+	5600 1950 5600 1850
+Wire Wire Line
+	5600 1950 6250 1950
+Wire Wire Line
+	6250 1950 6250 1900
+Wire Wire Line
+	6250 1600 6250 1450
+Connection ~ 6250 1450
+Wire Wire Line
+	6250 1450 6700 1450
+Text Label 5200 1650 2    50   ~ 0
+LDO_ENABLE
+Wire Wire Line
+	4250 1450 4250 1500
+Wire Wire Line
+	4250 1800 4250 1950
+Wire Wire Line
+	4250 1950 5600 1950
+Text Label 4550 4300 0    50   ~ 0
+LDO_ENABLE
+Wire Wire Line
+	4550 4300 4450 4300
+Text Label 4150 1450 2    50   ~ 0
+VBAT
+Wire Wire Line
+	4150 1450 4250 1450
+Connection ~ 4250 1450
+Wire Wire Line
+	4250 1450 5200 1450
+Text Label 5450 5200 2    50   ~ 0
+VBAT
+Wire Wire Line
+	5450 5200 5650 5200
+Text Label 6250 5200 0    50   ~ 0
+LDO_ENABLE
+Wire Wire Line
+	6050 5200 6250 5200
+Wire Wire Line
+	3950 4100 3950 4050
+Text Label 3950 4050 0    50   ~ 0
+VDD_3v3
+Text Label 7150 2250 0    50   ~ 0
+VDD_3v3
+Wire Wire Line
+	7150 2250 7150 2350
+$Comp
+L power:GND #PWR05
+U 1 1 5FD318D2
+P 7150 3100
+F 0 "#PWR05" H 7150 2850 50  0001 C CNN
+F 1 "GND" H 7155 2927 50  0000 C CNN
+F 2 "" H 7150 3100 50  0001 C CNN
+F 3 "" H 7150 3100 50  0001 C CNN
+	1    7150 3100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7150 3100 7150 2950
+NoConn ~ 7450 2650
+Text Label 6750 2650 2    50   ~ 0
+LED_DIN
+Wire Wire Line
+	6750 2650 6850 2650
+$Comp
+L power:GND #PWR03
+U 1 1 5FD36ED0
+P 3950 6250
+F 0 "#PWR03" H 3950 6000 50  0001 C CNN
+F 1 "GND" H 3955 6077 50  0000 C CNN
+F 2 "" H 3950 6250 50  0001 C CNN
+F 3 "" H 3950 6250 50  0001 C CNN
+	1    3950 6250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3950 6250 3950 6100
+Wire Wire Line
+	3450 4500 3350 4500
+Wire Wire Line
+	3450 4700 3350 4700
+Wire Wire Line
+	3450 4800 3350 4800
+Text Label 3350 4500 2    50   ~ 0
+~RST
+Text Label 3350 4700 2    50   ~ 0
+SWCLK
+Text Label 3350 4800 2    50   ~ 0
+SWDIO
+Text Notes 5450 4350 0    50   ~ 0
+ugh how to measure button\nstate when it's also used for\npower on >_< TODO
+$EndSCHEMATC
